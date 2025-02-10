@@ -1,10 +1,7 @@
 To-do
 
 CORE GAME UPDATES
-1. Core Structure & Setup
-- Adjust deck positioning dynamically based on player count and screen size.
-- Display player names above their respective decks.
-2. Game Mechanics
+1. Game Mechanics
 - Implement wild cards.
 - Add bots to fill empty player slots.
 - Create a method for tracking points.

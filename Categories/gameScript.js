@@ -1,3 +1,51 @@
+function adjustCircleSizeAndPositionDecks(playerCount) {
+  const circleContainer = document.querySelector(".circle-container");
+  circleContainer.innerHTML = ""; // Clear existing decks
+
+  // Set dynamic circle width (horizontal expansion for 5+ players)
+  let circleWidth, circleHeight = 550;
+  if (playerCount <= 4) {
+      circleWidth = 550; // Perfect circle
+  } else if (playerCount <= 6) {
+      circleWidth = 900; // Slightly wider
+  } else {
+      circleWidth = 1400; // Even wider for 7-8 players
+  }
+
+  circleContainer.style.setProperty("--circle-width", `${circleWidth}px`);
+  circleContainer.style.setProperty("--circle-height", `${circleHeight}px`);
+
+  // Create decks dynamically
+  const radiusX = circleWidth / 2; // Oval horizontal radius
+  const radiusY = circleHeight / 2; // Oval vertical radius
+
+  for (let i = 0; i < playerCount; i++) {
+    const angle = (360 / playerCount) * i;
+    const x = radiusX * Math.cos((angle * Math.PI) / 180);
+    const y = radiusY * Math.sin((angle * Math.PI) / 180);
+
+    const deck = document.createElement("div");
+    deck.classList.add("deck");
+    deck.style.position = "absolute";
+    deck.style.transform = `translate(${x}px, ${y}px)`;
+
+    // Unique deck ID
+    deck.dataset.index = i;
+
+    deck.innerHTML = `
+        <span class="category">Categories</span>
+        <img class="card-image" src="darkship.png" alt="dark ship logo" />
+    `;
+
+    // Attach click event to flip card
+    deck.addEventListener("click", () => flipCard(i));
+
+    circleContainer.appendChild(deck);
+}
+
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // Retrieve player names from localStorage
   const storedNames = localStorage.getItem("playerNames");
@@ -5,7 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
   if (storedNames) {
       const playerNames = JSON.parse(storedNames);
       console.log("Players:", playerNames); // Debugging check
+
+      adjustCircleSizeAndPositionDecks(playerNames.length); 
       assignPlayersToDecks(playerNames);
+      
+      // ✅ Initialize `decks` AFTER getting `playerNames`
+      const numDecks = playerNames.length;
+      decks = Array.from({ length: numDecks }, () => []);
+
+      shuffledMasterDeck.forEach((category, index) => {
+          const deckIndex = index % numDecks;
+          decks[deckIndex].push(category);
+      });
+
+      decks = decks.map((deck) => shuffleArray(deck));
+
   } else {
       alert("No player data found. Returning to setup.");
       window.location.href = "index.html";
@@ -146,35 +208,25 @@ function shuffleArray(array) {
 // Create shuffled master deck
 const shuffledMasterDeck = shuffleArray(masterCategories.slice()); // Slice to avoid mutating original array
 
-// Split master deck into four smaller decks
-const numDecks = 4;
-let decks = Array.from({ length: numDecks }, () => []);
-
-shuffledMasterDeck.forEach((category, index) => {
-  const deckIndex = index % numDecks;
-  decks[deckIndex].push(category);
-});
-
-// Shuffle each deck individually
-decks = decks.map((deck) => shuffleArray(deck));
-
 // Event listeners for flipping cards
 document.querySelectorAll(".deck").forEach((deckElement, index) => {
   deckElement.addEventListener("click", () => flipCard(index));
 });
 
 function flipCard(deckIndex) {
-  const deck = decks[deckIndex];
-  const deckElement = document.getElementById(`deck${deckIndex + 1}`);
-  const categoryElement = deckElement.querySelector(".category");
-  const imageElement = deckElement.querySelector(".card-image");
-  if (deck.length > 0) {
-    const category = deck.pop();
-    categoryElement.innerText = category;
-    imageElement.src = `images/${imageMap[category]}`;
-    imageElement.style.display = "block";
-  } else {
-    categoryElement.innerText = "Empty";
-    imageElement.style.display = "none";
+  const deck = document.querySelector(`.deck[data-index='${deckIndex}']`);
+  const categoryElement = deck.querySelector(".category");
+  const imageElement = deck.querySelector(".card-image");
+
+  if (!decks[deckIndex] || decks[deckIndex].length === 0) {
+      categoryElement.innerText = "Empty";
+      imageElement.style.display = "none";
+      return;
   }
+
+  // Get next category from the deck
+  const category = decks[deckIndex].pop();
+  categoryElement.innerText = category;
+  imageElement.src = `images/${imageMap[category]}`;
+  imageElement.style.display = "block";
 }

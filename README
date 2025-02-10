@@ -5,14 +5,14 @@ CORE GAME UPDATES
 - Implement wild cards.
 - Add bots to fill empty player slots.
 - Create a method for tracking points.
-3. Card Interactions
+2. Card Interactions
 - Add card flip animation.
 - Implement flip sound effect.
 - Implement match animation.
 - Add match sound effect.
 - Create a player win selection mechanism.
 -Add a sound effect for selecting the winning player.
-4. Game Completion & UI Enhancements
+3. Game Completion & UI Enhancements
 - Implement game-over screen with winner display.
 
 GAME FACILITATION UPDATE

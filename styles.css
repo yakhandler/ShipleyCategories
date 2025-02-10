@@ -5,7 +5,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(to bottom right, #ff758c, #ff7eb3);
+  background: linear-gradient(to top left, #ff758c, #f0f0f0);
   font-family: 'Poppins', sans-serif;
   color: white;
   text-align: center;

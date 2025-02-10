@@ -1,24 +1,7 @@
 To-do
 
 CORE GAME UPDATES
-- I want a welcome screen that has a button "Start New Game"
-- I want a dynamic way of selecting the number of players and naming them
-- I want the setup of the locations of the decks to be dynamic for different browser types and according to how many players
-- I want to display names of players above the deck
-- I want to add an animation for flipping the cards
-- I want to add a sound effect for flipping the cards
-- I want an animation for a match
-- I want a sound effect for a match
-- I want a way to select which player won
-- I want a sound affect to play when a player is selected as winning the match
-- I want a way to keep track of points
-- I want to add wild cards
-- I want to add bots to fill lobby
-- I want to implement a game-over screen showing the winner
-
 1. Core Structure & Setup
-- Add a welcome screen with a "Start New Game" button.
-- Implement dynamic player selection (number of players & names).
 - Adjust deck positioning dynamically based on player count and screen size.
 - Display player names above their respective decks.
 2. Game Mechanics
@@ -34,10 +17,6 @@ CORE GAME UPDATES
 -Add a sound effect for selecting the winning player.
 4. Game Completion & UI Enhancements
 - Implement game-over screen with winner display.
-
-
-
-
 
 GAME FACILITATION UPDATE
 - I want to split the game into 2 different experiences. One for if everyone is in the same room and a single person is operating the game board and one for if everyone is remote and on a group phone call.

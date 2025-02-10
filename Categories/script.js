@@ -64,6 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
       }
       console.log("Starting Game with players:", playerNames);
+
+    // Store player data in localStorage
+    localStorage.setItem("playerNames", JSON.stringify(playerNames));
+
+    // Redirect to the game page
+    window.location.href = "gameIndex.html";
   });
 
   // Join Game

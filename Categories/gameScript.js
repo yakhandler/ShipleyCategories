@@ -1,3 +1,33 @@
+document.addEventListener("DOMContentLoaded", () => {
+  // Retrieve player names from localStorage
+  const storedNames = localStorage.getItem("playerNames");
+  
+  if (storedNames) {
+      const playerNames = JSON.parse(storedNames);
+      console.log("Players:", playerNames); // Debugging check
+      assignPlayersToDecks(playerNames);
+  } else {
+      alert("No player data found. Returning to setup.");
+      window.location.href = "index.html";
+  }
+});
+
+// Function to assign players to decks dynamically
+function assignPlayersToDecks(playerNames) {
+  const deckElements = document.querySelectorAll(".deck");
+  
+  playerNames.forEach((name, index) => {
+      if (deckElements[index]) {
+          let playerLabel = document.createElement("div");
+          playerLabel.innerText = name;
+          playerLabel.classList.add("player-label");
+          deckElements[index].appendChild(playerLabel);
+      }
+  });
+}
+
+
+
 // Master list of categories
 const masterCategories = [
   "Types of fruit",

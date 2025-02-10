@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <h1 class="title">Categories Game</h1>
+        <button id="start-game">Start New Game</button>
+        <button id="join-game">Join Game</button>
+    </div>
+
+    <!-- Player Selection Screen -->
+    <div id="player-selection" class="hidden">
+        <h2>How many players?</h2>
+        <div class="player-buttons">
+            <button class="player-count" data-count="2">2</button>
+            <button class="player-count" data-count="3">3</button>
+            <button class="player-count" data-count="4">4</button>
+            <button class="player-count" data-count="5">5</button>
+            <button class="player-count" data-count="6">6</button>
+            <button class="player-count" data-count="7">7</button>
+            <button class="player-count" data-count="8">8</button>
+        </div>
+    </div>
+
+    <!-- Player Name Entry Screen -->
+    <div id="player-names" class="hidden">
+        <h2>Enter Player Names</h2>
+        <form id="name-form"></form>
+        <button id="start-match">Start Match</button>
+    </div>
+
+    <!-- Join Game Screen -->
+    <div id="join-game-screen" class="hidden">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="join-name" placeholder="Your Name">
+        <button id="join-submit">Join</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

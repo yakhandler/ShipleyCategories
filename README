@@ -35,4 +35,20 @@ GAME FACILITATION UPDATE
 - add an indicator of whose turn it is
 
 
+/game-app/
+│── index.html        # Main entry point (Welcome Screen)
+│── styles.css        # Global styles
+│── script.js         # Handles navigation between game modes
+│── /categories-game/
+│   │── index.html    # Categories game HTML
+│   │── styles.css    # Categories game styles
+│   │── script.js     # Categories game logic
+│── /game2/           # Another game option
+│   │── index.html
+│   │── styles.css
+│   │── script.js
+│── /game3/           # Third game option
+│   │── index.html
+│   │── styles.css
+│   │── script.js
 
